@@ -9,7 +9,9 @@
         "lint": "npx eslint .",
         "lint:fix": "npx eslint . --fix",
         "format": "prettier --write .",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "test": "jest",
+        "test:watch": "jest --watchAll"
     },
     "lint-staged": {
         "config": "lint-staged.config.yaml"
@@ -22,6 +24,9 @@
     "devDependencies": {
         "@eslint/eslintrc": "^3.3.3",
         "@tailwindcss/postcss": "^4",
+        "@testing-library/jest-dom": "^6.9.1",
+        "@testing-library/react": "^16.3.2",
+        "@types/jest": "^30.0.0",
         "@types/node": "^20",
         "@types/react": "^19",
         "@types/react-dom": "^19",
@@ -30,9 +35,12 @@
         "eslint-config-prettier": "^10.1.8",
         "eslint-plugin-prettier": "^5.5.4",
         "husky": "^9.1.7",
+        "jest": "^30.2.0",
+        "jest-environment-jsdom": "^30.2.0",
         "lint-staged": "^16.1.2",
         "prettier": "^3.7.4",
         "tailwindcss": "^4",
+        "ts-node": "^10.9.2",
         "typescript": "^5"
     }
 }
