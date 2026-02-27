@@ -24,7 +24,6 @@ jobs:
         run: npm ci
 
       - name: Run Tests
-        # Runs the Jest suite that i built as well call me the test master
         run: npm run test
 
       - name: Build Application
