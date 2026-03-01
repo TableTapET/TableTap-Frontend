@@ -1,6 +1,8 @@
 import { defineConfig, globalIgnores } from 'eslint/config';
 import nextVitals from 'eslint-config-next/core-web-vitals';
 import prettierPlugin from 'eslint-plugin-prettier';
+import eslintConfigPrettier from 'eslint-config-prettier';
+import globals from 'globals';
 
 export default defineConfig([
     // Next.js recommended rules
@@ -32,7 +34,7 @@ export default defineConfig([
 
             // Forces removal of dead variables. Dead code hides real mistakes and bloats the project.
             'no-unused-vars': [
-                'warn',
+                'error',
                 { vars: 'all', args: 'after-used', ignoreRestSiblings: true },
             ],
 
@@ -43,7 +45,7 @@ export default defineConfig([
             'no-unreachable': 'error',
 
             // Detects loops that never run properly. Usually caused by sloppy refactoring.
-            'no-unreachable-loop': 'warn',
+            'no-unreachable-loop': 'error',
 
             // Prevents accidental fallthrough in switch statements. Fallthrough is almost always a bug.
             'no-fallthrough': 'error',
@@ -61,7 +63,7 @@ export default defineConfig([
             'no-async-promise-executor': 'error',
 
             // Prevents sequential await inside loops. Kills performance and usually not intended.
-            'no-await-in-loop': 'warn',
+            'no-await-in-loop': 'error',
 
             // Safer object property checks. Some objects don’t inherit hasOwnProperty — this rule avoids crashes.
             'no-prototype-builtins': 'error',
@@ -71,6 +73,18 @@ export default defineConfig([
 
             // Forces braces. Prevents subtle bugs from misleading indentation.
             curly: 'error',
+
+            // This integrates Prettier formatting issues as ESLint errors
+            'prettier/prettier': 'error',
         },
     },
+    // Jest globals for test files
+    {
+        files: ['**/__tests__/**/*.{js,jsx,ts,tsx}', '**/*.{test,spec}.{js,jsx,ts,tsx}'],
+        languageOptions: {
+            globals: globals.jest,
+        },
+    },
+
+    eslintConfigPrettier, // MUST be last to override everything else
 ]);
