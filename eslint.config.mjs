@@ -1,7 +1,8 @@
 import { defineConfig, globalIgnores } from 'eslint/config';
 import nextVitals from 'eslint-config-next/core-web-vitals';
 import prettierPlugin from 'eslint-plugin-prettier';
-import eslintConfigPrettier from 'eslint-config-prettier'; // Add this to disable conflicting rules
+import eslintConfigPrettier from 'eslint-config-prettier';
+import globals from 'globals';
 
 export default defineConfig([
     // Next.js recommended rules
@@ -77,5 +78,13 @@ export default defineConfig([
             'prettier/prettier': 'error',
         },
     },
+    // Jest globals for test files
+    {
+        files: ['**/__tests__/**/*.{js,jsx,ts,tsx}', '**/*.{test,spec}.{js,jsx,ts,tsx}'],
+        languageOptions: {
+            globals: globals.jest,
+        },
+    },
+
     eslintConfigPrettier, // MUST be last to override everything else
 ]);
