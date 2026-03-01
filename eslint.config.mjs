@@ -1,6 +1,7 @@
 import { defineConfig, globalIgnores } from 'eslint/config';
 import nextVitals from 'eslint-config-next/core-web-vitals';
 import prettierPlugin from 'eslint-plugin-prettier';
+import eslintConfigPrettier from 'eslint-config-prettier'; // Add this to disable conflicting rules
 
 export default defineConfig([
     // Next.js recommended rules
@@ -71,6 +72,10 @@ export default defineConfig([
 
             // Forces braces. Prevents subtle bugs from misleading indentation.
             curly: 'error',
+
+            // This integrates Prettier formatting issues as ESLint errors
+            'prettier/prettier': 'error',
         },
     },
+    eslintConfigPrettier, // MUST be last to override everything else
 ]);
