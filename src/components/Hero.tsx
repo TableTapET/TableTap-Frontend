@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button"
+
 export default function Hero() {
   return (
     <section className="text-center py-20">
@@ -7,9 +9,7 @@ export default function Hero() {
       <p className="mt-6 text-lg text-gray-600">
         Get your restaurant information with a touch of your fingers
       </p>
-      <button className="mt-8 px-6 py-3 bg-black text-white rounded-lg">
-        Get Started
-      </button>
+      <Button variant="outline" className="mt-6">Get Started</Button>
     </section>
   )
 }
