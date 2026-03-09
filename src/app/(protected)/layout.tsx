@@ -1,40 +1,15 @@
 import type { ReactNode } from 'react';
-import Link from 'next/link';
-import { redirect } from 'next/navigation';
-
-function Header() {
-    return (
-        // temporary links for testing - replace with actual protected routes later
-        <header style={{ padding: '1rem', borderBottom: '1px solid #ccc' }}>
-            <nav style={{ display: 'flex', gap: '1rem' }}>
-                <Link href="/kitchen">Kitchen Display</Link>
-                <Link href="/pos">POS Register</Link>
-                <Link href="/customer">Customer Menu</Link>
-            </nav>
-        </header>
-    );
-}
-
-function Footer() {
-    return <footer style={{ padding: '1rem', marginTop: 'auto' }}>Protected System Footer</footer>;
-}
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
 
 export default function ProtectedLayout({ children }: { children: ReactNode }) {
     // TODO: MVP Scaffolding - Auth is not wired yet.
-    // Replace this with actual AuthService check later.
-    const isAuthenticated = true;
-
-    if (!isAuthenticated) {
-        redirect('/auth/login');
-    }
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-            <Header />
-            <main className="content-container" style={{ flex: 1 }}>
-                {children}
-            </main>
-            <Footer />
+        <div className="flex min-h-screen flex-col">
+            <Header isProtected={true} />
+            <main className="flex-1 p-6">{children}</main>
+            <Footer text="Protected System Footer" />
         </div>
     );
 }

@@ -1,29 +1,13 @@
 import type { ReactNode } from 'react';
-import Link from 'next/link';
-
-function Header() {
-    return (
-        <header style={{ padding: '1rem', borderBottom: '1px solid #ccc' }}>
-            <nav style={{ display: 'flex', gap: '1rem' }}>
-                <Link href="/">Home</Link>
-                <Link href="/auth/login">Staff Login</Link>
-            </nav>
-        </header>
-    );
-}
-
-function Footer() {
-    return <footer style={{ padding: '1rem', marginTop: 'auto' }}>Public Footer</footer>;
-}
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
 
 export default function PublicLayout({ children }: { children: ReactNode }) {
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-            <Header />
-            <main className="content-container" style={{ flex: 1 }}>
-                {children}
-            </main>
-            <Footer />
+        <div className="flex min-h-screen flex-col">
+            <Header isProtected={false} />
+            <main className="flex-1 p-6">{children}</main>
+            <Footer text="Public Footer" />
         </div>
     );
 }
