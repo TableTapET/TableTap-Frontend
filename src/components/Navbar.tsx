@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 export default function Navbar() {
   return (
     <nav className="flex justify-between p-6">
@@ -15,7 +16,7 @@ export default function Navbar() {
       <div className="space-x-6">
         <Button variant="link">Feature</Button>
         <Button variant="link">About Us</Button>
-        <Button variant="link">Github</Button>
+        <Button variant="link"><Link href="https://github.com/TableTapET">Github</Link></Button>
       </div>
     </nav>
   )
