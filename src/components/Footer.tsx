@@ -9,8 +9,8 @@ export default function Footer({ className = "" }: { className?: string }) {
           <div className="flex-1 min-w-0">
 
             <p className="mt-4 text-sm text-gray-600 dark:text-gray-300 max-w-md">
-              Open-source tools to help restaurants digitize ordering, manage tables,
-              and understand performance — built by the TableTapET community. {/**rework paragraph here! */}
+              Simple tools to help restaurants digitize ordering, manage tables,
+              and understand performance — built by the TableTapET community. 
             </p>
           </div>
 
