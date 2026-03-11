@@ -1,0 +1,9 @@
+# Handle line endings automatically for files detected as text 
+# and ensure they are converted to LF on checkin.
+* text=auto eol=lf
+
+# Explicitly set eol to lf for specific web/code files
+*.{js,jsx,ts,tsx,json,css,scss,md,yml,yaml} text eol=lf
+
+# Ensure Husky scripts always use LF to prevent execution errors
+.husky/* text eol=lf
