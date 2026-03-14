@@ -23,8 +23,14 @@ This repository serves for the web version of the wep app.
     cd TableTap-Frontend
     ```
 2. **Install dependencies**:
+
     ```
     npm install
+    ```
+
+3. **Configure environment variables**:
+    ```
+    cp .env.example .env.local
     ```
 
 ## Usage(without docker)
@@ -48,3 +54,22 @@ This repository serves for the web version of the wep app.
 - `npm run start` → Start the production server.
 - `npm run lint` → Check for linting errors.
 - `npm run format` → Fix any formatting errors.
+
+## API Client Layer
+
+All HTTP calls should go through the centralized Axios client at `src/lib/api/client.ts`.
+
+- Import the client from `src/lib/api` and use `apiClient.get/post/put/delete`.
+- Do not use direct `fetch`/`axios` calls in components.
+- Auth token attachment, 401 refresh, and normalized API errors are handled by interceptors.
+
+### Environment Variables
+
+- `NEXT_PUBLIC_API_BASE_URL` (preferred): Base API URL, for example `http://localhost:5001/api`.
+- `NEXT_PUBLIC_BACKEND_URL` (legacy fallback): Used only if `NEXT_PUBLIC_API_BASE_URL` is not set.
+- `NEXT_PUBLIC_AUTH_REFRESH_PATH`: Refresh endpoint path. Default is `/auth/token/refresh/`.
+- `NEXT_PUBLIC_API_TIMEOUT_MS`: Axios timeout in milliseconds. Default is `15000`.
+
+### Docker Note
+
+When running via docker compose, set `NEXT_PUBLIC_API_BASE_URL` on the frontend service so browser requests target the correct backend URL.
